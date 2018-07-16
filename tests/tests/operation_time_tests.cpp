@@ -2798,8 +2798,9 @@ BOOST_AUTO_TEST_CASE( sbd_stability )
       auto last_print_rate = db->get_dynamic_global_properties().sbd_print_rate;
 
       // Keep producing blocks until printing SBD is back
-      while( ( gpo.current_sbd_supply * exchange_rate ).amount >= ( gpo.virtual_supply.amount * gpo.sbd_start_percent ) / STEEM_100_PERCENT )
+      while( ( db->get_dynamic_global_properties().current_sbd_supply * exchange_rate ).amount >= ( db->get_dynamic_global_properties().virtual_supply.amount * db->get_dynamic_global_properties().sbd_start_percent ) / STEEM_100_PERCENT )
       {
+         auto& gpo = db->get_dynamic_global_properties();
          BOOST_REQUIRE( gpo.sbd_print_rate >= last_print_rate );
          last_print_rate = gpo.sbd_print_rate;
          db_plugin->debug_generate_blocks( debug_key, 1, database::skip_witness_signature );
