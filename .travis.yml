@@ -1,4 +1,30 @@
 language: cpp
+
+install:
+- apt install -y \
+  automake \
+  build-essential \
+  cmake \
+  doxygen \
+  libbz2-dev \
+  libboost-date-time-dev \
+  libboost-chrono-dev \
+  libboost-context-dev \
+  libboost-coroutine-dev \
+  libboost-filesystem-dev \
+  libboost-iostreams-dev \
+  libboost-locale-dev \
+  libboost-program-options-dev \
+  libboost-serialization-dev \
+  libboost-system-dev \
+  libboost-test-dev \
+  libboost-thread-dev \
+  libreadline-dev \
+  libsnappy-dev \
+  libssl-dev \
+  libtool \
+  ncurses-dev
+
 script:
 - mkdir build && cd build
 - cmake -DCMAKE_BUILD_TYPE=Release -DLOW_MEMORY_NODE=ON -DCLEAR_VOTES=ON -DSKIP_BY_TX_ID=ON ..
